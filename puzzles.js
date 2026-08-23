@@ -1,13 +1,13 @@
 const PUZZLES = [
   {
     number: 1, slug: "force", finalAnswer: "FORCE",
-    theme: "Classical mechanics warmup", difficulty: "Foundation",
+    theme: "Gravitation, orbits, and approximation", difficulty: "Challenge",
     clues: [
-      { equation: String.raw`\mathbf F_{\rm net}=m\mathbf a`, answer: "force", aliases: ["force","net force"], hint: "The interaction that produces acceleration.", explanation: "Newton's second law relates net force and acceleration." },
-      { equation: String.raw`x(t)=A\cos(\omega t+\phi)`, answer: "oscillator", aliases: ["oscillator","harmonic oscillator","simple harmonic oscillator"], hint: "A system that repeats its motion about equilibrium.", explanation: "A harmonic oscillator has sinusoidal motion." },
-      { equation: String.raw`\mathbf F_{12}=-\mathbf F_{21}`, answer: "reaction", aliases: ["reaction","action reaction","newtons third law","newton's third law"], hint: "Every action has an equal and opposite one.", explanation: "Newton's third law pairs forces between two objects." },
-      { equation: String.raw`\mathbf p_{\rm before}=\mathbf p_{\rm after}`, answer: "conservation", aliases: ["conservation","momentum conservation","conservation of momentum"], hint: "An isolated system keeps the same total momentum.", explanation: "This is conservation of momentum." },
-      { equation: String.raw`K=\frac12mv^2`, answer: "energy", aliases: ["energy","kinetic energy"], hint: "A scalar quantity associated with motion.", explanation: "K is kinetic energy." }
+      { equation: String.raw`\mathbf F_{12}=-\frac{Gm_1m_2}{r^2}\hat{\mathbf r}`, answer: "force", aliases: ["force","gravitational force","newtons law of gravitation","newton's law of gravitation","universal gravitation"], hint: "Newton's inverse-square interaction between two masses.", explanation: "Newton's law of universal gravitation gives an attractive force of magnitude Gm₁m₂/r²." },
+      { equation: String.raw`r(\theta)=\frac{a(1-e^2)}{1+e\cos\theta}`, answer: "orbit", aliases: ["orbit","ellipse","elliptical orbit","keplers first law","kepler's first law"], hint: "A planet traces this conic section with the Sun at one focus.", explanation: "Kepler's first law says a planet follows an elliptical orbit with the Sun at one focus." },
+      { equation: String.raw`\frac{T^2}{a^3}=\frac{4\pi^2}{GM}`, answer: "ratio", aliases: ["ratio","constant ratio","keplers third law","kepler's third law","period radius relation"], hint: "For bodies orbiting the same central mass, the quantity on the left is the same.", explanation: "Kepler's third law states that the ratio T²/a³ is constant for a fixed central mass." },
+      { equation: String.raw`\frac{dA}{dt}=\frac{L}{2m}=\text{constant}`, answer: "constant", aliases: ["constant","constant areal velocity","areal velocity","keplers second law","kepler's second law","equal areas"], hint: "The planet sweeps out equal areas in equal times.", explanation: "Kepler's second law says the areal velocity is constant, reflecting angular-momentum conservation." },
+      { equation: String.raw`e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots`, answer: "exponential", aliases: ["exponential","exponential function","taylor expansion","taylor series","maclaurin series"], hint: "This function equals its own derivative and has the displayed Taylor series.", explanation: "This is the Maclaurin expansion of the exponential function." }
     ]
   },
   {
