@@ -1,90 +1,74 @@
 const PUZZLES = [
   {
-    number: 1,
-    slug: "field",
-    finalAnswer: "FIELD",
-    theme: "Classical mechanics warmup",
-    difficulty: "Intro",
+    number: 1, slug: "force", finalAnswer: "FORCE",
+    theme: "Classical mechanics warmup", difficulty: "Foundation",
     clues: [
-      { equation: String.raw`F = ma`, answer: "force", aliases: ["force", "net force"], hint: "The quantity that causes acceleration.", explanation: "Force is related to acceleration by Newton's second law." },
-      { equation: String.raw`I = \int r^2\,dm`, answer: "inertia", aliases: ["inertia", "moment of inertia"], hint: "Resistance to changes in rotational motion.", explanation: "Moment of inertia is the rotational analogue of mass." },
-      { equation: String.raw`E = hf`, answer: "energy", aliases: ["energy", "photon energy"], hint: "For a photon, this is proportional to frequency.", explanation: "Planck's relation gives photon energy as E = hf." },
-      { equation: String.raw`L = T - V`, answer: "lagrangian", aliases: ["lagrangian", "the lagrangian"], hint: "Kinetic energy minus potential energy.", explanation: "The Lagrangian is often L = T - V in classical mechanics." },
-      { equation: String.raw`\rho = \frac{m}{V}`, answer: "density", aliases: ["density", "mass density"], hint: "Mass per unit volume.", explanation: "Density is mass divided by volume." }
+      { equation: String.raw`\mathbf F_{\rm net}=m\mathbf a`, answer: "force", aliases: ["force","net force"], hint: "The interaction that produces acceleration.", explanation: "Newton's second law relates net force and acceleration." },
+      { equation: String.raw`x(t)=A\cos(\omega t+\phi)`, answer: "oscillator", aliases: ["oscillator","harmonic oscillator","simple harmonic oscillator"], hint: "A system that repeats its motion about equilibrium.", explanation: "A harmonic oscillator has sinusoidal motion." },
+      { equation: String.raw`\mathbf F_{12}=-\mathbf F_{21}`, answer: "reaction", aliases: ["reaction","action reaction","newtons third law","newton's third law"], hint: "Every action has an equal and opposite one.", explanation: "Newton's third law pairs forces between two objects." },
+      { equation: String.raw`\mathbf p_{\rm before}=\mathbf p_{\rm after}`, answer: "conservation", aliases: ["conservation","momentum conservation","conservation of momentum"], hint: "An isolated system keeps the same total momentum.", explanation: "This is conservation of momentum." },
+      { equation: String.raw`K=\frac12mv^2`, answer: "energy", aliases: ["energy","kinetic energy"], hint: "A scalar quantity associated with motion.", explanation: "K is kinetic energy." }
     ]
   },
   {
-    number: 2,
-    slug: "quantum",
-    finalAnswer: "QUANTUM",
-    theme: "Quantum fundamentals",
-    difficulty: "Intro",
+    number: 2, slug: "charge", finalAnswer: "CHARGE",
+    theme: "Mechanics-to-E&M bridge", difficulty: "Foundation",
     clues: [
-      { equation: String.raw`q = ne`, answer: "quantization", aliases: ["quantization", "charge quantization", "quantized charge"], hint: "Charge appears in discrete chunks.", explanation: "Quantization means a quantity appears in discrete allowed values." },
-      { equation: String.raw`\Delta x\,\Delta p \geq \frac{\hbar}{2}`, answer: "uncertainty", aliases: ["uncertainty", "uncertainty principle", "heisenberg uncertainty"], hint: "A limit on knowing conjugate quantities at once.", explanation: "Uncertainty relates the spreads of position and momentum measurements." },
-      { equation: String.raw`S = \int L\,dt`, answer: "action", aliases: ["action", "the action"], hint: "The physical path makes this stationary.", explanation: "The action is the time integral of the Lagrangian." },
-      { equation: String.raw`N = mg\cos\theta`, answer: "normal", aliases: ["normal", "normal force"], hint: "A contact force perpendicular to a surface.", explanation: "The normal force is exerted perpendicular to a contact surface." },
-      { equation: String.raw`\tau = \mathbf r \times \mathbf F`, answer: "torque", aliases: ["torque", "moment"], hint: "The rotational analogue of force.", explanation: "Torque measures how strongly a force tends to rotate an object." },
-      { equation: String.raw`U^\dagger U = I`, answer: "unitarity", aliases: ["unitarity", "unitary"], hint: "This preserves quantum probabilities.", explanation: "Unitarity preserves inner products and total probability." },
-      { equation: String.raw`p = mv`, answer: "momentum", aliases: ["momentum", "linear momentum"], hint: "Mass times velocity in the nonrelativistic limit.", explanation: "Momentum is conserved in isolated systems." }
+      { equation: String.raw`I=\frac{\Delta Q}{\Delta t}`, answer: "current", aliases: ["current","electric current"], hint: "Charge flow per unit time.", explanation: "Current measures how quickly charge passes a point." },
+      { equation: String.raw`\mathbf F_s=-k\mathbf x`, answer: "hooke", aliases: ["hooke","hookes law","hooke's law","spring force"], hint: "The ideal-spring force law.", explanation: "Hooke's law gives a restoring force proportional to displacement." },
+      { equation: String.raw`\mathbf a=\frac{\mathbf F_{\rm net}}m`, answer: "acceleration", aliases: ["acceleration"], hint: "The rate of change of velocity.", explanation: "Acceleration is net force divided by mass." },
+      { equation: String.raw`R=\frac VI`, answer: "resistance", aliases: ["resistance","electrical resistance"], hint: "Opposition to current flow.", explanation: "Resistance is voltage divided by current for an ohmic element." },
+      { equation: String.raw`\mathbf F_g=m\mathbf g`, answer: "gravity", aliases: ["gravity","gravitational force","weight"], hint: "A familiar long-range interaction.", explanation: "Near Earth's surface, gravitational force is mg." },
+      { equation: String.raw`E=K+U`, answer: "energy", aliases: ["energy","mechanical energy","total energy"], hint: "The sum of kinetic and potential terms.", explanation: "Mechanical energy is K + U." }
     ]
   },
   {
-    number: 3,
-    slug: "gauge",
-    finalAnswer: "GAUGE",
-    theme: "Fields and symmetry",
-    difficulty: "Medium",
+    number: 3, slug: "field", finalAnswer: "FIELD",
+    theme: "Electric fields", difficulty: "Intro E&M",
     clues: [
-      { equation: String.raw`\nabla \cdot \mathbf E = \frac{\rho}{\epsilon_0}`, answer: "gauss", aliases: ["gauss", "gauss law", "gauss's law"], hint: "One of Maxwell's equations.", explanation: "Gauss's law relates electric flux to charge density." },
-      { equation: String.raw`S = \int L\,dt`, answer: "action", aliases: ["action", "the action"], hint: "The central quantity in variational mechanics.", explanation: "The action is extremized by physical trajectories." },
-      { equation: String.raw`U^\dagger U = I`, answer: "unitarity", aliases: ["unitarity", "unitary"], hint: "Required for probability conservation.", explanation: "Unitary time evolution preserves state norms." },
-      { equation: String.raw`\frac{D^2 x^\mu}{d\lambda^2}=0`, answer: "geodesic", aliases: ["geodesic", "geodesics"], hint: "The straightest possible path in curved spacetime.", explanation: "A geodesic generalizes a straight line to curved geometry." },
-      { equation: String.raw`E^2=p^2c^2+m^2c^4`, answer: "energy", aliases: ["energy", "relativistic energy"], hint: "The quantity on the left side.", explanation: "This is the relativistic energy-momentum relation." }
+      { equation: String.raw`\Phi_E=\int\mathbf E\cdot d\mathbf A`, answer: "flux", aliases: ["flux","electric flux"], hint: "How much field passes through a surface.", explanation: "Electric flux is the surface integral of E." },
+      { equation: String.raw`I=\frac{dQ}{dt}`, answer: "intensity", aliases: ["intensity","current","electric current","current intensity"], hint: "A historical I-word for electric current.", explanation: "Current intensity is charge flow per unit time." },
+      { equation: String.raw`\mathbf E=\frac{\mathbf F}{q}`, answer: "electric", aliases: ["electric","electric field","field"], hint: "Force per unit positive test charge.", explanation: "This equation defines the electric field." },
+      { equation: String.raw`\mathbf F=q(\mathbf E+\mathbf v\times\mathbf B)`, answer: "lorentz", aliases: ["lorentz","lorentz force","lorentz force law"], hint: "The force law for a charge in E and B fields.", explanation: "The Lorentz law combines electric and magnetic forces." },
+      { equation: String.raw`\rho=\frac{dQ}{dV}`, answer: "density", aliases: ["density","charge density","volume charge density"], hint: "Charge per unit volume.", explanation: "Volume charge density is dQ/dV." }
     ]
   },
   {
-    number: 4,
-    slug: "higgs",
-    finalAnswer: "HIGGS",
-    theme: "Particle physics",
-    difficulty: "Medium",
+    number: 4, slug: "voltage", finalAnswer: "VOLTAGE",
+    theme: "Potential and voltage", difficulty: "Intro E&M",
     clues: [
-      { equation: String.raw`H = T + V`, answer: "hamiltonian", aliases: ["hamiltonian", "the hamiltonian"], hint: "Often the total energy operator or function.", explanation: "The Hamiltonian often represents total energy and generates time evolution." },
-      { equation: String.raw`I = \int r^2\,dm`, answer: "inertia", aliases: ["inertia", "moment of inertia"], hint: "Rotational resistance to acceleration.", explanation: "Moment of inertia measures resistance to angular acceleration." },
-      { equation: String.raw`D_\mu = \partial_\mu + igA_\mu`, answer: "gauge", aliases: ["gauge", "gauge field", "covariant derivative"], hint: "A symmetry structure behind the Standard Model interactions.", explanation: "Gauge fields enter the covariant derivative." },
-      { equation: String.raw`\Phi_G = \oint \mathbf g\cdot d\mathbf A`, answer: "gravity", aliases: ["gravity", "gravitational flux"], hint: "The interaction sourced by mass-energy.", explanation: "Gravity is the long-range interaction associated with mass-energy." },
-      { equation: String.raw`S^2 = s(s+1)\hbar^2`, answer: "spin", aliases: ["spin", "angular momentum"], hint: "Intrinsic angular momentum.", explanation: "Spin is intrinsic angular momentum with quantum number s." }
+      { equation: String.raw`V=\frac Uq`, answer: "voltage", aliases: ["voltage","electric potential","potential"], hint: "Potential energy per unit charge.", explanation: "Voltage is U/q." },
+      { equation: String.raw`V=IR`, answer: "ohm", aliases: ["ohm","ohms law","ohm's law"], hint: "The law relating voltage, current, and resistance.", explanation: "Ohm's law is V = IR." },
+      { equation: String.raw`\mathcal E=-\frac{d\Phi_B}{dt}`, answer: "lenz", aliases: ["lenz","lenz law","lenz's law"], hint: "The minus sign says the induced effect opposes the change.", explanation: "Lenz's law determines the direction of induced emf." },
+      { equation: String.raw`T=2\pi\sqrt{\frac mk}`, answer: "time", aliases: ["time","period","oscillation period"], hint: "T is one full cycle's duration.", explanation: "T is the time for one oscillation." },
+      { equation: String.raw`\mathbf a=\frac{\mathbf F}{m}`, answer: "acceleration", aliases: ["acceleration"], hint: "Force per unit mass.", explanation: "Acceleration is F/m." },
+      { equation: String.raw`\mathbf g=-\frac{GM}{r^2}\hat{\mathbf r}`, answer: "gravity", aliases: ["gravity","gravitational field"], hint: "An inverse-square field analogous to a point charge's field.", explanation: "Gravity is a useful analogy for electrostatics." },
+      { equation: String.raw`\mathcal E=\frac Wq`, answer: "emf", aliases: ["emf","electromotive force"], hint: "Energy supplied per unit charge by a source.", explanation: "Emf is work supplied per unit charge." }
     ]
   },
   {
-    number: 5,
-    slug: "photon",
-    finalAnswer: "PHOTON",
-    theme: "Waves and quanta",
-    difficulty: "Intro",
+    number: 5, slug: "circuit", finalAnswer: "CIRCUIT",
+    theme: "DC circuits", difficulty: "Intro E&M",
     clues: [
-      { equation: String.raw`P = \frac{F}{A}`, answer: "pressure", aliases: ["pressure"], hint: "Force per unit area.", explanation: "Pressure is force divided by area." },
-      { equation: String.raw`H = T+V`, answer: "hamiltonian", aliases: ["hamiltonian", "the hamiltonian"], hint: "The energy function in Hamiltonian mechanics.", explanation: "The Hamiltonian often represents total energy." },
-      { equation: String.raw`V = IR`, answer: "ohm", aliases: ["ohm", "ohm law", "ohm's law"], hint: "The circuit law relating voltage, current, and resistance.", explanation: "Ohm's law is V = IR." },
-      { equation: String.raw`\tau = \mathbf r \times \mathbf F`, answer: "torque", aliases: ["torque", "moment"], hint: "Rotational effect of a force.", explanation: "Torque is r cross F." },
-      { equation: String.raw`x(t)=A\cos(\omega t+\phi)`, answer: "oscillator", aliases: ["oscillator", "simple harmonic oscillator", "harmonic oscillator"], hint: "A system with sinusoidal motion.", explanation: "A harmonic oscillator has sinusoidal motion." },
-      { equation: String.raw`N = mg\cos\theta`, answer: "normal", aliases: ["normal", "normal force"], hint: "Surface support force.", explanation: "The normal force is perpendicular to the surface." }
+      { equation: String.raw`C=\frac QV`, answer: "capacitance", aliases: ["capacitance"], hint: "Stored charge per unit voltage.", explanation: "Capacitance is Q/V." },
+      { equation: String.raw`I=\frac{dQ}{dt}`, answer: "intensity", aliases: ["intensity","current","electric current","current intensity"], hint: "The I in the charge-flow equation.", explanation: "I denotes current intensity." },
+      { equation: String.raw`R=\rho\frac LA`, answer: "resistance", aliases: ["resistance"], hint: "It rises with wire length and falls with area.", explanation: "A uniform wire has resistance rho L/A." },
+      { equation: String.raw`Q=CV`, answer: "charge", aliases: ["charge","stored charge"], hint: "The quantity stored on capacitor plates.", explanation: "A capacitor stores charge Q = CV." },
+      { equation: String.raw`\mathbf E=\frac Vd\hat{\mathbf n}`, answer: "uniform", aliases: ["uniform","uniform field","uniform electric field"], hint: "The ideal field between large parallel plates.", explanation: "Parallel plates produce an approximately uniform field away from edges." },
+      { equation: String.raw`\mathcal E=-\frac{d\Phi_B}{dt}`, answer: "induction", aliases: ["induction","electromagnetic induction","faradays law","faraday's law"], hint: "Changing magnetic flux produces an emf.", explanation: "Faraday's law describes electromagnetic induction." },
+      { equation: String.raw`\tau=RC`, answer: "time", aliases: ["time","time constant","rc time constant"], hint: "The characteristic charging scale.", explanation: "The RC time constant is tau = RC." }
     ]
   },
   {
-    number: 6,
-    slug: "tensor",
-    finalAnswer: "TENSOR",
-    theme: "Math methods",
-    difficulty: "Medium",
+    number: 6, slug: "magnet", finalAnswer: "MAGNET",
+    theme: "Magnetism", difficulty: "Intro E&M",
     clues: [
-      { equation: String.raw`\tau = \mathbf r \times \mathbf F`, answer: "torque", aliases: ["torque", "moment"], hint: "Rotational analogue of force.", explanation: "Torque measures rotational tendency." },
-      { equation: String.raw`S = k_B\ln\Omega`, answer: "entropy", aliases: ["entropy"], hint: "Counts microscopic multiplicity logarithmically.", explanation: "Boltzmann's entropy formula is S = k_B ln Ω." },
-      { equation: String.raw`N = mg\cos\theta`, answer: "normal", aliases: ["normal", "normal force"], hint: "A perpendicular contact force.", explanation: "The normal force is a contact force perpendicular to a surface." },
-      { equation: String.raw`S^2=s(s+1)\hbar^2`, answer: "spin", aliases: ["spin"], hint: "Intrinsic angular momentum.", explanation: "Spin is a quantum form of angular momentum." },
-      { equation: String.raw`\hat O\lvert\psi\rangle`, answer: "operator", aliases: ["operator", "observable"], hint: "In quantum mechanics, this acts on states.", explanation: "Operators act on quantum states and can represent observables." },
-      { equation: String.raw`R_{\mu\nu}-\frac12 Rg_{\mu\nu}=8\pi G T_{\mu\nu}`, answer: "relativity", aliases: ["relativity", "general relativity"], hint: "Einstein's theory of gravitation.", explanation: "General relativity relates spacetime curvature to stress-energy." }
+      { equation: String.raw`\mathbf F_B=q\mathbf v\times\mathbf B`, answer: "magnetic", aliases: ["magnetic","magnetic force","magnetism"], hint: "The velocity-dependent Lorentz force.", explanation: "A moving charge experiences magnetic force q v cross B." },
+      { equation: String.raw`\oint\mathbf B\cdot d\boldsymbol\ell=\mu_0I_{\rm enc}`, answer: "ampere", aliases: ["ampere","amperes law","ampere's law"], hint: "The circuital law relating B to enclosed current.", explanation: "Ampère's law relates circulation of B to current." },
+      { equation: String.raw`\oint\mathbf E\cdot d\mathbf A=\frac{Q_{\rm enc}}{\epsilon_0}`, answer: "gauss", aliases: ["gauss","gauss law","gauss's law"], hint: "The flux law for enclosed electric charge.", explanation: "Gauss's law relates electric flux to enclosed charge." },
+      { equation: String.raw`\nabla\cdot\mathbf B=0`, answer: "no monopoles", aliases: ["no monopoles","no magnetic monopoles","gauss law for magnetism"], hint: "Magnetic field lines have no beginnings or ends.", explanation: "Classical electromagnetism contains no isolated magnetic charges." },
+      { equation: String.raw`\mathcal E=-N\frac{d\Phi_B}{dt}`, answer: "emf", aliases: ["emf","electromotive force","induced emf"], hint: "The voltage generated by changing magnetic flux.", explanation: "Changing flux induces an emf." },
+      { equation: String.raw`\boldsymbol\tau=\boldsymbol\mu\times\mathbf B`, answer: "torque", aliases: ["torque","magnetic torque"], hint: "It tends to align a magnetic dipole with B.", explanation: "A dipole experiences torque mu cross B." }
     ]
   }
 ];
