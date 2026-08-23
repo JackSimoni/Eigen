@@ -1,25 +1,13 @@
-# Eigen — Daily Physics Decode
+# Eigen
 
-A static daily physics equation puzzle.
+A physics equation puzzle for introductory electricity and magnetism.
 
-## Run locally
-Open `index.html` in a browser, or run a local static server:
+New puzzles appear every Wednesday and Friday. Solve each equation clue; the first letters of the answers reveal the final word.
+
+To run locally, open `index.html` or serve the folder with:
 
 ```bash
 python -m http.server 5173
 ```
 
-Then open http://localhost:5173.
-
-## Publish
-This version is static. You can publish by dragging the folder to Netlify, uploading to Vercel, or enabling GitHub Pages.
-
-## Add puzzles
-Edit `puzzles.js`. Each puzzle must satisfy:
-
-- `finalAnswer` is uppercase letters only.
-- Number of clues equals the number of letters in `finalAnswer`.
-- Each clue's canonical `answer` starts with the corresponding final-answer letter.
-- Canonical answers should be short. Put long formal phrases in `aliases`.
-
-Open the browser console; the app warns you when a puzzle violates these rules.
+Add or edit puzzles in `puzzles.js`.
