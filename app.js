@@ -1,14 +1,26 @@
 const CONFIG = {
-  epochUTC: Date.UTC(2026, 5, 10),
-  storagePrefix: "eigen:v1",
+  launchDate: new Date(2026, 7, 23),
+  storagePrefix: "eigen:v2",
   maxCanonicalAnswerLength: 13,
 };
 
-const dayMs = 24 * 60 * 60 * 1000;
-const todayIndex = Math.floor((Date.now() - CONFIG.epochUTC) / dayMs);
+function getReleaseIndex(date = new Date()) {
+  const start = new Date(CONFIG.launchDate);
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(date);
+  end.setHours(0, 0, 0, 0);
+  let index = 0;
+  for (const day = new Date(start); day <= end; day.setDate(day.getDate() + 1)) {
+    if (day > start && (day.getDay() === 3 || day.getDay() === 5)) index += 1;
+  }
+  return Math.max(0, index);
+}
+
+const releaseIndex = getReleaseIndex();
+const releaseNumber = releaseIndex + 1;
 const puzzles = validatePuzzles(PUZZLES);
-const puzzle = puzzles[((todayIndex % puzzles.length) + puzzles.length) % puzzles.length];
-const storageKey = `${CONFIG.storagePrefix}:puzzle:${puzzle.number}`;
+const puzzle = puzzles[releaseIndex % puzzles.length];
+const storageKey = `${CONFIG.storagePrefix}:release:${releaseNumber}`;
 const statsKey = `${CONFIG.storagePrefix}:stats`;
 
 const defaultState = {
@@ -52,21 +64,18 @@ function loadState() {
 }
 function saveState() { localStorage.setItem(storageKey, JSON.stringify(state)); }
 function loadStats() {
-  try { return { solvedCount: 0, streak: 0, lastSolved: null, ...JSON.parse(localStorage.getItem(statsKey)) }; }
-  catch { return { solvedCount: 0, streak: 0, lastSolved: null }; }
+  try { return { solvedCount: 0, streak: 0, lastSolvedRelease: null, ...JSON.parse(localStorage.getItem(statsKey)) }; }
+  catch { return { solvedCount: 0, streak: 0, lastSolvedRelease: null }; }
 }
 function saveStats(stats) { localStorage.setItem(statsKey, JSON.stringify(stats)); }
-function todayStamp() { return new Date().toISOString().slice(0, 10); }
-function yesterdayStamp() { const d = new Date(); d.setDate(d.getDate() - 1); return d.toISOString().slice(0, 10); }
 function markCompleted() {
   if (state.completed) return;
   state.completed = true;
   const stats = loadStats();
-  const today = todayStamp();
-  if (stats.lastSolved !== today) {
-    stats.streak = stats.lastSolved === yesterdayStamp() ? stats.streak + 1 : 1;
+  if (stats.lastSolvedRelease !== releaseNumber) {
+    stats.streak = stats.lastSolvedRelease === releaseNumber - 1 ? stats.streak + 1 : 1;
     stats.solvedCount += 1;
-    stats.lastSolved = today;
+    stats.lastSolvedRelease = releaseNumber;
     saveStats(stats);
   }
 }
@@ -166,7 +175,7 @@ function revealHint() {
 function share() {
   const solved = state.solved.filter(Boolean).length;
   const marks = state.solved.map((v) => (v ? "◆" : "◇")).join("");
-  const text = `Eigen #${puzzle.number}\n${marks} ${solved}/${puzzle.clues.length}\n${state.completed ? "Solved" : "In progress"}`;
+  const text = `Eigen #${releaseNumber}\n${marks} ${solved}/${puzzle.clues.length}\n${state.completed ? "Solved" : "In progress"}`;
   navigator.clipboard?.writeText(text).then(() => setStatus("Copied result.", "good")).catch(() => setStatus(text, "warn"));
 }
 function resetToday() {
@@ -177,7 +186,7 @@ function resetToday() {
   renderAll();
 }
 function renderAll() {
-  $("puzzle-meta").textContent = `Puzzle #${puzzle.number} · ${puzzle.theme} · ${puzzle.difficulty} · ${puzzle.finalAnswer.length} letters`;
+  $("puzzle-meta").textContent = `Puzzle #${releaseNumber} · ${puzzle.theme} · ${puzzle.difficulty} · ${puzzle.finalAnswer.length} letters · New puzzles Wednesday & Friday`;
   renderStats();
   renderLetters();
   renderClues();
